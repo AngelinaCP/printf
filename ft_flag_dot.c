@@ -5,10 +5,6 @@ int	ft_flag_dot(char *list, int i, t_list *flags, va_list argc)
 	flags->dot = 1;
 	if (list[i++] == '*')
 		flags->dot = 1;
-//    if (list[i] == '0' && ft_flags(list[++i]))
-//        return (3);
-//	else if (ft_flags(list[i]))
-//	    return (2);
 	return (flags ->dot);
 }
 
@@ -64,10 +60,5 @@ int	ft_digit_pars(char *list, int i, t_list *flags, va_list argc)
         flags->dot = flags->width;
     else
         flags->precision = flags->width;
-//	if (ft_isdigit(list[++i]))
-//	    flags->precision = flags->width;
-//	i -= 3;
-//    if (list[i] == '.')
-//        flags->out += string_precision(flags, argc);
 	return (flags ->width);
 }

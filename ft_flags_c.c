@@ -12,7 +12,9 @@ void	ft_flags_s(t_list *flags)
 	flags->precision = 0;
 	flags->num = 0;
 	flags->negative = 0;
-	flags->hexid = "0123456789ABCDEF";
+	flags->hex = 0;
+	flags->low_hex = "0123456789abcdef";
+	flags->up_hex = "0123456789ABCDEF";
 }
 
 int	ft_flags(char c)

@@ -13,8 +13,7 @@ int	ft_flag_pars(char *list, int i, t_list *flags, va_list argc)
 	    count = dispars_num(flags, argc, list, i);
 	else if (list[i] == 's')
 		count = dispars_string(flags, argc, list, i);
-	else if (list[i] == 'x')
-	    putnb_short_base()
-
+	else if (list[i] == 'x' || list[i] == 'X')
+	    count = dispars_num(flags, argc, list, i);
 	return (count);
 }

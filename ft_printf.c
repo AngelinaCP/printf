@@ -62,17 +62,17 @@ int	ft_printf(const char *format, ...)
 	va_start(argc, format);
 	i = ft_check_flags(argc, list, &flags);
 	va_end(argc);
-	//printf("|%i|", i);
+//	printf("|%i|", i);
 	return (i);
 }
 
 int main (void)
 {
-    int i = 23;
-//    ft_printf("%x", i);
-//    printf("\n");
-    printf("%x", i);
-    printf("\n");
+    int i = 52;
+
+	ft_printf(	"%7x", 33);
+	printf("\n");
+    printf("%7x", 33);
 }
 
 //ft_printf("%6.10s", "hello");

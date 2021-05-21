@@ -2,8 +2,6 @@
 
 void	put_zero_and_space(t_list *flags, int num)
 {
-//    if (flags->precision > 0)
-//        flags->width = flags->precision;
 	while (flags->precision - num > 0)
     {
         if (flags->minus > 0 || flags->zero > 0)
@@ -34,16 +32,16 @@ void	treat_width(t_list *flags, int num)
 	    put_zero_and_space(flags, num);
 	}
 	if (flags->precision > 0)
-    {
-        put_zero_and_space(flags, num);
-    }
+		put_zero_and_space(flags, num);
 }
 
 
 int	num_div(int j)
 {
-	int num, i;
-	num= 0;
+	int num;
+	int i;
+
+	num = 0;
 	i = j;
 	if (i < 0)
 		i *= -1;
@@ -67,7 +65,10 @@ int dispars_num(t_list *flags, va_list argc, char *list, int i)
     else if (list[i] == 'u')
         flags->num = va_arg(argc, int);
     else if (list[i] == 'x' || list[i] == 'X')
-        flags->dex = va_arg(long long);
+    {
+        flags->hex = va_arg(argc, long long);
+			return (treat_hex(flags, list, i));
+    }
     return (dispars_int(flags, argc));
 }
 

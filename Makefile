@@ -21,7 +21,8 @@ SRCS	=	ft_atoi.c		ft_strlen.c	\
 			ft_putnbr_fd.c	\
 			ft_flag_dot.c	ft_printf.c		ft_type_pars.c \
 			ft_flag_pars.c	ft_flags_c.c	treat_width.c	\
-			dispars_char.c	dispars_string.c
+			dispars_char.c	dispars_string.c ft_hex_dispars.c \
+			ft_toupper.c
 
 OBJS	= ${SRCS:.c=.o}
 
