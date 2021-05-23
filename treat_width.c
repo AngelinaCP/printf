@@ -7,7 +7,7 @@ int dispars_num(t_list *flags, va_list argc, char *list, int i)
 		flags->num = va_arg(argc, int);
 		flags->base = 10;
 	}
-    else if (list[i] == 'x' || list[i] == 'X' || list[i] == 'p')
+    else if (list[i] == 'x' || list[i] == 'X')
     {
         flags->num = va_arg(argc, long long);
         flags->base = 16;
@@ -17,6 +17,12 @@ int dispars_num(t_list *flags, va_list argc, char *list, int i)
 		flags->num = va_arg(argc, unsigned int);
 		flags->base = 10;
 	}
+    else if(list[i] == 'p')
+	{
+		flags->num = va_arg(argc, long long);
+		flags->base = 16;
+		flags->precision -= 2;
+	}
     return (treat_int(flags, list, i));
 }
 
@@ -25,7 +31,8 @@ int treat_pointer(t_list *flags, int num, char *list, int i)
 	int count;
 
 	count = ft_putstr_fd("0x", 0, 0);
-	count += putnb_short_base(flags->num, flags->base, flags->low_hex, flags);
+	//if (flags->dot == 1 && flags->width == flags->precision)
+		count += putnb_short_base(flags->num, flags->base, flags->low_hex, flags);
 	return (count);
 }
 
@@ -34,8 +41,8 @@ int treat_int(t_list *flags, char *list, int i)
 	int num;
 
 	num = num_div(flags->num, flags->base);
-//	if (flags->num == 4294967295)
-//		flags->num = 4294967295;
+	if (list[i] == 'p')
+		num += 2;
 	if (get_null(flags))
 		return (0);
 	if (flags->num < 0)
@@ -75,7 +82,7 @@ int dispars_int(t_list *flags, int num, char *list, int i)
 		else
 			put_zero_and_space(flags, num);
 	}
-	int_disp(list, i, flags, num);
+	num = int_disp(list, i, flags, num);
 	return (num);
 }
 

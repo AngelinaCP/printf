@@ -83,6 +83,9 @@ int int_disp(char *list, int i, t_list *flags, int num);
 int treat_int(t_list *flags, char *list, int i);
 int dispars_int(t_list *flags, int num,  char *list, int i);
 int dispars_neg(t_list *flags, int num,  char *list, int i);
+int get_null(t_list *flags);
+int dispars_neg_string(t_list *flags, char *ar, int len);
+int treat_pointer(t_list *flags, int num, char *list, int i);
 
 
 

@@ -26,7 +26,6 @@ void	char_minus(t_list flags, va_list argc, int ar)
 {
 	if (flags.star == 1)
 	{
-	//	treat_width(&flags, 1);
 		ft_putchar_fd(ar, 1);
 		flags.minus = 0;
 	}
@@ -38,24 +37,42 @@ void	char_minus(t_list flags, va_list argc, int ar)
 
 void    print_percent(t_list *flags)
 {
-    if (flags->width > 0)
-    {
-        if (flags->minus == 1)
-        {
-            flags->count += ft_putchar_fd('%', 1);
-            put_zero_and_space(flags, 1);
-        }
-        else if (flags->zero == 1)
-        {
-            put_zero_and_space(flags, 1);
-            flags->count += ft_putchar_fd('%', 1);
-        }
-        else
-        {
-            put_zero_and_space(flags, 1);
-            flags->count += ft_putchar_fd('%', 1);
-        }
-    }
-    else
-        flags->count += ft_putchar_fd('%', 1);
+	if (flags->width > 0)
+	{
+		if (flags->minus > 0)
+		{
+			flags->minus = 0;
+			flags->count += ft_putchar_fd('%', 1);
+			put_zero_and_space(flags, 1);
+		}
+		else
+		{
+			if (flags->zero == 1)
+				flags->minus = 1;
+			put_zero_and_space(flags, 1);
+			flags->count += ft_putchar_fd('%', 1);
+		}
+		return ;
+	}
+	flags->count += ft_putchar_fd('%', 1);
 }
+//    if (flags->width > 0)
+//    {
+//        if (flags->minus == 1)
+//        {
+//            flags->count += ft_putchar_fd('%', 1);
+//            put_zero_and_space(flags, 1);
+//        }
+//        else if (flags->zero == 1)
+//        {
+//            put_zero_and_space(flags, 1);
+//            flags->count += ft_putchar_fd('%', 1);
+//        }
+//        else
+//        {
+//            put_zero_and_space(flags, 1);
+//            flags->count += ft_putchar_fd('%', 1);
+//        }
+//    }
+//    else
+//        flags->count += ft_putchar_fd('%', 1);

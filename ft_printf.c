@@ -62,14 +62,15 @@ int	ft_printf(const char *format, ...)
 	va_start(argc, format);
 	i = ft_check_flags(argc, list, &flags);
 	va_end(argc);
-//	printf("|%i|", i);
+	//printf("|%i|", i);
 	return (i);
 }
 
-//int main(void)
-//{
-//	char *s = "privet";
-//	ft_printf("%3p", 15);
-//	printf("\n");
-//	printf("%3p", 15);
-//}
+int main(void)
+{
+	int i = 15;
+	char *s = "privet";
+	ft_printf("%5.p", NULL);
+	printf("\n");
+	printf("%5.p", NULL);
+}
