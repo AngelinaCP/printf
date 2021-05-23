@@ -7,12 +7,13 @@ void	ft_flags_s(t_list *flags)
 	flags->dot = 0;
 	flags->star = 0;
 	flags->zero = 0;
-	flags->space = 0;
+	flags->sym = 0;
 	flags->count = 0;
 	flags->precision = 0;
 	flags->num = 0;
-	flags->negative = 0;
+//	flags->negative = 0;
 	flags->hex = 0;
+	flags->base = 0;
 	flags->low_hex = "0123456789abcdef";
 	flags->up_hex = "0123456789ABCDEF";
 }

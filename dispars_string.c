@@ -1,21 +1,14 @@
 #include "libft.h"
 
-int string_precision(t_list *flags, va_list argc)
+int get_null(t_list *flags)
 {
-    int i;
-    char	*ar;
-
-    ar = va_arg(argc, char *);
-
-    i = flags->width;
-    if (flags->width > 0)
-    {
-        put_zero_and_space(flags, ft_strlen(ar));
-        flags->count += ft_putstr_fd(ar, i, 1);
-    }
-    else
-        flags->count += ft_putstr_fd(ar, i, 1);
-    return (flags->count);
+	if ((flags->dot == 1 && flags->precision == 0) || (flags->dot == 1 && flags->width == flags->precision))
+	{
+		flags->minus = 0;
+		put_zero_and_space(flags, flags->dot - 1);
+		return (-1);
+	}
+	return (0);
 }
 
 int dispars_string(t_list *flags, va_list argc, char *list, int i)
@@ -26,21 +19,36 @@ int dispars_string(t_list *flags, va_list argc, char *list, int i)
 	len = 0;
 	ar = va_arg(argc, char *);
 	if (ar == NULL)
-	    len += ft_putstr_fd("(null)", 0, 1);
-	if (flags->dot < flags->precision)
-	    flags->dot = ft_strlen(ar);
-	//printf("%d", flags->precision);
-    if (flags->minus == 1)
-    {
-        len += ft_putstr_fd(ar, 0,  1);
-        put_zero_and_space(flags, ft_strlen(ar));
-    }
-    else if (flags->precision > 0)
-    {
-        put_zero_and_space(flags, ft_strlen(ar));
-        len += ft_putstr_fd(ar, flags->dot, 1);
-    }
-    else
-        len += ft_putstr_fd(ar, flags->dot,1);
+		ar = "(null)";
+	if (get_null(flags))
+		return (0);
+	if (flags->minus == 0)
+	{
+		if (flags->precision > 0)
+		{
+			if (flags->dot && flags->dot < ft_strlen(ar))
+				put_zero_and_space(flags, flags->dot);
+			else
+				put_zero_and_space(flags, ft_strlen(ar));
+		}
+		len = ft_putstr_fd(ar, flags->dot, 1);
+	}
+	else
+		len = dispars_neg_string(flags, ar, len);
+	return (len);
+}
+
+int dispars_neg_string(t_list *flags, char *ar, int len)
+{
+	len += ft_putstr_fd(ar, flags->dot, 1);
+	if (flags->precision > 0)
+	{
+		if (flags->zero == 0)
+			flags->minus = 0;
+		if (flags->dot && flags->dot < ft_strlen(ar))
+			put_zero_and_space(flags, flags->dot);
+		else
+			put_zero_and_space(flags, ft_strlen(ar));
+	}
 	return (len);
 }

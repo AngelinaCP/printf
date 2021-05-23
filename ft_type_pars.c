@@ -15,9 +15,10 @@ int	ft_type_pars(char *list, int i, t_list *flags, va_list argc)
 			i++;
 		}
 		else if (list[i] == '.')
-        {
-            i += ft_flag_dot(list, i, flags, argc);
-        }
+		{
+			flags->dot = 1;
+			i++;
+		}
 		else if (list[i] == '0')
 		{
 			ft_flag_zero(list, i, flags, argc);

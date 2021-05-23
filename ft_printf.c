@@ -66,16 +66,10 @@ int	ft_printf(const char *format, ...)
 	return (i);
 }
 
-int main (void)
-{
-    int i = 52;
-
-	ft_printf(	"%7x", 33);
-	printf("\n");
-    printf("%7x", 33);
-}
-
-//ft_printf("%6.10s", "hello");
-//printf("\n");
-
-//printf("%6.10s", "hello");
+//int main(void)
+//{
+//	char *s = "privet";
+//	ft_printf("%3p", 15);
+//	printf("\n");
+//	printf("%3p", 15);
+//}

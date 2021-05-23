@@ -15,5 +15,7 @@ int	ft_flag_pars(char *list, int i, t_list *flags, va_list argc)
 		count = dispars_string(flags, argc, list, i);
 	else if (list[i] == 'x' || list[i] == 'X')
 	    count = dispars_num(flags, argc, list, i);
+	else if (list[i] == 'p')
+		count = dispars_num(flags, argc, list, i);
 	return (count);
 }

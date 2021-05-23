@@ -12,7 +12,7 @@ int	dispars_char(t_list flags, va_list argc, char *list, int i)
 		if (flags.star == 1)
 		{
 			ft_putchar_fd(ar, 1);
-			treat_width(&flags, 1);
+			//treat_width(&flags, 1);
 		}
 	}
 	else if (flags.minus == 0)
@@ -26,7 +26,7 @@ void	char_minus(t_list flags, va_list argc, int ar)
 {
 	if (flags.star == 1)
 	{
-		treat_width(&flags, 1);
+	//	treat_width(&flags, 1);
 		ft_putchar_fd(ar, 1);
 		flags.minus = 0;
 	}

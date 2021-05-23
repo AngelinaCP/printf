@@ -27,14 +27,15 @@ typedef struct s_list
 	int	minus;
 	int	star;
 	int	zero;
-	int space;
+	char sym;
 	int count;
 	int precision;
-	int num;
+	long long num;
 	int negative;
 	long long hex;
 	char *up_hex;
 	char *low_hex;
+	int base;
 }	t_list;
 
 
@@ -45,7 +46,7 @@ int		ft_isdigit(int s);
 int	    ft_putchar_fd(char s, int fd);
 int	    ft_putstr_fd(char *s, int j, int fd);
 void	ft_putendl_fd(char *s, int fd);
-void	    ft_putnbr_fd(int n, int fd);
+int	    ft_putnbr_fd(int n, int fd);
 int		ft_printf(const char *, ...);
 char	*ft_strdup(const char *s1);
 int     ft_flag_dot(char *list, int i, t_list *flags, va_list argc);
@@ -61,7 +62,7 @@ int 	ft_digit_pars(char *list, int i, t_list *flags, va_list argc);
 void 	ft_flags_s(t_list *flags);
 int     ft_flags(char c);
 int     ft_conversion (char c);
-int 	dispars_int(t_list *flags, va_list argc);
+//int 	dispars_int(t_list *flags, va_list argc);
 void 	treat_width(t_list *flags, int num);
 int 	dispars_char(t_list flags, va_list argc, char *list, int i);
 int		ft_check_flags(va_list argc, char *list, t_list *flags);
@@ -73,11 +74,16 @@ int 	check_space(int i, char *list, va_list argc, t_list *flags);
 void    print_percent(t_list *flags);
 int 	string_precision(t_list *flags, va_list argc);
 int 	dispars_num(t_list *flags, va_list argc, char *list, int i);
-int 	dispars_neg(t_list *flags);
-int 	putnb_short_base(long long n, size_t base_len, char *base);
-int 	treat_hex(t_list *flags, char *list, int i);
-int		num_div(int j);
-int putnb_hed(char *list, int i, t_list *flags);
-int		num_hed(long long j);
+//int 	dispars_neg(t_list *flags);
+int putnb_short_base(long long n, size_t base_len, char *base, t_list *flags);
+int treat_hex_pos(t_list *flags, char *list, int i, int num);
+int	num_div(long long j, int base);
+int putnb_hed(char *list, int i, t_list *flags, int num);
+int int_disp(char *list, int i, t_list *flags, int num);
+int treat_int(t_list *flags, char *list, int i);
+int dispars_int(t_list *flags, int num,  char *list, int i);
+int dispars_neg(t_list *flags, int num,  char *list, int i);
+
+
 
 #endif
