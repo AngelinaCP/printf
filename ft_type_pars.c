@@ -37,7 +37,7 @@ int	ft_type_pars(char *list, int i, t_list *flags, va_list argc)
         }
         else if (ft_flags(list[i]))
         {
-            flags->count += ft_is_flag(list, i, flags, argc);
+        	flags->count += ft_is_flag(list, i, flags, argc);
             i++;
             break;
         }

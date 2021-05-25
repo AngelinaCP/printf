@@ -66,11 +66,11 @@ int	ft_printf(const char *format, ...)
 	return (i);
 }
 
-int main(void)
-{
-	int i = 15;
-	char *s = "privet";
-	ft_printf("%5.p", NULL);
-	printf("\n");
-	printf("%5.p", NULL);
-}
+//int main(void)
+//{
+//	int i = 15;
+//	char *s = "privet";
+//	ft_printf("%.*p", -1, 0);
+//	printf("\n");
+//	printf("%.*p", -1, 0);
+//}

@@ -16,9 +16,9 @@ int	ft_putnbr_fd(int n, int fd)
 {
     int i;
 
-    i = 0;
+    i = 1;
 	if (n == -2147483648)
-		ft_putstr_fd("-2147483648", 0, fd);
+		ft_putstr_fd("2147483648", 0, fd);
 	else if (n < 0)
 	{
 	//	ft_putchar_fd('-', fd);

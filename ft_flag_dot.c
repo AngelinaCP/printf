@@ -20,16 +20,18 @@ int	ft_flag_minus(t_list *flags)
 
 int	ft_flag_star(char *list, int i, t_list  *flags, va_list argc)
 {
-	flags ->star = 1;
-//	if (list[++i] == '.')
-//		flags->star = 0;
+	flags->star = 1;
 	flags->width = va_arg(argc, int);
+	flags->precision = flags->width;
+	if (flags->width < 0 && flags->dot == 1)
+		flags->star = -1;
 	if (flags->width > 0)
 		return (flags ->width);
 	else
 	{
 		flags->minus = 1;
 		flags->width *= (-1);
+		flags->precision = flags->width;
 	}
 	return (flags ->width);
 }
@@ -38,15 +40,13 @@ int    ft_is_flag(char *list, int i, t_list *flags, va_list argc)
 {
     int count;
 
-    count = 0;
-    count += ft_flag_pars(list, i, flags, argc);
+   // count = 0;
+    count = ft_flag_pars(list, i, flags, argc);
     return (count);
 }
 
 int	ft_digit_pars(char *list, int i, t_list *flags, va_list argc)
 {
-//	if (flags ->star == 1)
-//		return (flags->width);
 	flags->width = 0;
 	if (flags->star > 0)
 	{
@@ -62,5 +62,5 @@ int	ft_digit_pars(char *list, int i, t_list *flags, va_list argc)
         flags->dot = flags->width;
     else
         flags->precision = flags->width;
-	return (flags ->width);
+    return (flags ->width);
 }

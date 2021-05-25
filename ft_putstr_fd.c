@@ -15,6 +15,7 @@
 int	ft_putstr_fd(char *s, int j, int fd)
 {
     int count;
+
     count = 0;
 	if (s)
 	{
