@@ -5,5 +5,7 @@
     <mapping directory="$PROJECT_DIR$/42TESTERS-PRINTF" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/pft" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/pft_2019" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/printTester" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/unit-test" vcs="Git" />
   </component>
 </project>

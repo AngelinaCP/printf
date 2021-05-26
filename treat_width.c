@@ -3,7 +3,7 @@
 int dispars_num(t_list *flags, va_list argc, char *list, int i)
 {
     if (list[i] == 'd' || list[i] == 'i')
-	{
+    {
 		flags->num = va_arg(argc, int);
 		flags->base = 10;
 	}
@@ -46,7 +46,7 @@ int treat_int(t_list *flags, char *list, int i)
 			flags->precision++;
 		flags->precision -= 2;
 	}
-	if (get_null(flags))
+	if (get_null(flags) && list[i] != 'p')
 		return (0);
 	if (flags->num < 0)
 	{

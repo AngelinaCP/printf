@@ -2,7 +2,8 @@
 
 int get_null(t_list *flags)
 {
-	if ((flags->dot == 1 && flags->precision == 0 && flags->star == 0) || (flags->dot == 1 && flags->width == flags->precision && flags->star == 0))
+	if ((flags->dot == 1 && flags->precision == 0 && flags->star == 0 && flags->num == 0) || //
+	(flags->dot == 1 && flags->width == flags->precision && flags->star == 0 && flags->num == 0))
 	{
 		flags->minus = 0;
 		put_zero_and_space(flags, flags->dot - 1);

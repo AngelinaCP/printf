@@ -13,6 +13,7 @@ int	check_space(int i, char *list, va_list argc, t_list *flags)
 	}
 	while (catch)
 	{
+		ft_flags_s(flags);
 		while (list[i] == ' '  && (space = 1))
             i++;
 		if (space)
@@ -23,11 +24,11 @@ int	check_space(int i, char *list, va_list argc, t_list *flags)
 		catch = 0;
 		if ((i = ft_type_pars(list, i, flags, argc)) == -1)
 			return (-1);
-        if (list[i] == '%')
-        {
-            i++;
-            catch = 1;
-        }
+//        if (list[i] == '%')
+//        {
+//            i++;
+//            catch = 1;
+//        }
 	}
 	return (i);
 }
@@ -39,7 +40,6 @@ int	ft_check_flags(va_list argc, char *list, t_list *flags)
 	num = 0;
 	i = 0;
 	c = 0;
-    ft_flags_s(flags);
 	while (list[i])
 	{
 		i = check_space(i, list, argc, flags);
@@ -62,15 +62,13 @@ int	ft_printf(const char *format, ...)
 	va_start(argc, format);
 	i = ft_check_flags(argc, list, &flags);
 	va_end(argc);
-	//printf("|%i|", i);
+//	printf("|%i|", i);
 	return (i);
 }
 
 //int main(void)
 //{
 //	int i = 15;
-//	char *s = "privet";
-//	ft_printf("%.*p", -1, 0);
-//	printf("\n");
-//	printf("%.*p", -1, 0);
+//	ft_printf(".%%.%%.%%.%%.%%.%%.%%.%%.\n");
+//	printf(".%%.%%.%%.%%.%%.%%.%%.%%.\n");
 //}

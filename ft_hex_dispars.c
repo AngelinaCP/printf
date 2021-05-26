@@ -4,8 +4,6 @@ void	put_zero_and_space(t_list *flags, int num)
 {
 	while (flags->precision - num > 0)
 	{
-//		if (flags->zero == 1 && flags->minus == 1)
-//			flags->count += ft_putchar_fd(' ', 1);
 		if (flags->minus > 0)
 			flags->count += ft_putchar_fd('0', 1);
 		else

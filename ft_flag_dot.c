@@ -40,7 +40,6 @@ int    ft_is_flag(char *list, int i, t_list *flags, va_list argc)
 {
     int count;
 
-   // count = 0;
     count = ft_flag_pars(list, i, flags, argc);
     return (count);
 }

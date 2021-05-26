@@ -8,6 +8,9 @@ int	ft_type_pars(char *list, int i, t_list *flags, va_list argc)
         {
             print_percent(flags);
 	        i++;
+	        if (list[i] == '%')
+	        	i++;
+	        break;
         }
 		else if (list[i] == '*')
 		{
