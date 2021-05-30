@@ -14,6 +14,10 @@
 
 int	ft_putchar_fd(char s, int fd)
 {
-	write(fd, &s, sizeof(s));
-	return (1);
+	if (s != 0)
+	{
+		write(fd, &s, sizeof(s));
+		return (1);
+	}
+	return (0);
 }

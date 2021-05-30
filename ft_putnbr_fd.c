@@ -14,15 +14,19 @@
 
 int	ft_putnbr_fd(int n, int fd)
 {
-    int i;
+	int i;
 
-    i = 1;
-	if (n == -2147483648)
-		ft_putstr_fd("2147483648", 0, fd);
+	i = 0;
+   if (n == -2147483648)
+   {
+	   ft_putstr_fd("2147483648", 0, fd);
+	   i++;
+   }
+
 	else if (n < 0)
 	{
-	//	ft_putchar_fd('-', fd);
 		ft_putnbr_fd(n * (-1), fd);
+		i = 1;
 	}
 	else if (n >= 10)
 	{
@@ -31,4 +35,5 @@ int	ft_putnbr_fd(int n, int fd)
 	}
 	else
 		ft_putchar_fd(n + '0', fd);
+	return (i);
 }

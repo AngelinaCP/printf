@@ -17,19 +17,19 @@ void	dispars_char(t_list *flags, va_list argc, char *list, int i)
 			char_minus(flags, argc, ar);
 		return ;
 	}
-	flags->count += ft_putchar_fd(ar, 1);
+		flags->count += ft_putchar_fd(ar, 1);
 }
 
 void	char_minus(t_list *flags, va_list argc, int ar)
 {
-		flags->minus = 0;
-		flags->count += ft_putchar_fd(ar, 1);
-		put_zero_and_space(flags, 1);
+	flags->minus = 0;
+	flags->count += ft_putchar_fd(ar, 1);
+	put_zero_and_space(flags, 1);
 }
 
 void    print_percent(t_list *flags)
 {
-	if (flags->width > 0)
+	if (flags->precision > 0)
 	{
 		if (flags->minus > 0)
 		{

@@ -2,14 +2,14 @@
 
 int get_null(t_list *flags)
 {
-	if ((flags->dot == 1 && flags->precision == 0 && flags->star == 0 && flags->num == 0) || //
-	(flags->dot == 1 && flags->width == flags->precision && flags->star == 0 && flags->num == 0))
+	if ((flags->dot_p > 0 && flags->precision == 0 && flags->star == 0 && !flags->num) || //
+	(flags->dot_p > 0 && flags->width == flags->precision && flags->star == 0 && !flags->num))
 	{
 		flags->minus = 0;
-		put_zero_and_space(flags, flags->dot - 1);
-		return (-1);
+		put_zero(flags, 0);
+		return (0);
 	}
-	return (0);
+	return (-1);
 }
 
 int dispars_string(t_list *flags, va_list argc, char *list, int i)
@@ -20,14 +20,24 @@ int dispars_string(t_list *flags, va_list argc, char *list, int i)
 	len = 0;
 	ar = va_arg(argc, char *);
 	if (ar == NULL)
+	{
 		ar = "(null)";
-	if (get_null(flags))
+		if (get_null(flags) == 0)
+			return (0);
+	}
+	if (flags->dot_e == 1)
+	{
+		flags->minus = 0;
+		put_zero_and_space(flags, 0);
 		return (0);
+	}
 	if (flags->minus == 0)
 	{
+		if (flags->zero == 1)
+			flags->minus = 1;
 		if (flags->precision > 0)
 		{
-			if (flags->dot && flags->dot < ft_strlen(ar))
+			if (flags->dot_p && flags->dot < ft_strlen(ar))
 				put_zero_and_space(flags, flags->dot);
 			else
 				put_zero_and_space(flags, ft_strlen(ar));
@@ -44,9 +54,9 @@ int dispars_neg_string(t_list *flags, char *ar, int len)
 	len += ft_putstr_fd(ar, flags->dot, 1);
 	if (flags->precision > 0)
 	{
-		if (flags->zero == 0)
+		//if (flags->zero == 0)
 			flags->minus = 0;
-		if (flags->dot && flags->dot < ft_strlen(ar))
+		if (flags->dot_p && flags->dot < ft_strlen(ar))
 			put_zero_and_space(flags, flags->dot);
 		else
 			put_zero_and_space(flags, ft_strlen(ar));

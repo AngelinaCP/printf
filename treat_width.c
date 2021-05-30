@@ -9,18 +9,18 @@ int dispars_num(t_list *flags, va_list argc, char *list, int i)
 	}
     else if (list[i] == 'x' || list[i] == 'X')
     {
-        flags->num = va_arg(argc, long long);
+        flags->num = va_arg(argc, unsigned int);
         flags->base = 16;
     }
-    else if (list[i] == 'u')
-	{
-		flags->num = va_arg(argc, unsigned int);
-		flags->base = 10;
-	}
-    else if(list[i] == 'p')
+    else if (list[i] == 'p')
 	{
 		flags->num = va_arg(argc, long long);
 		flags->base = 16;
+	}
+	else if (list[i] == 'u')
+	{
+		flags->num = va_arg(argc, unsigned int);
+		flags->base = 10;
 	}
     return (treat_int(flags, list, i));
 }
@@ -29,9 +29,10 @@ int treat_pointer(t_list *flags, int num, char *list, int i)
 {
 	int count;
 
-	count = ft_putstr_fd("0x", 0, 1);
-	if (flags->dot == 0 || (flags->dot > 0 && flags->num != 0))
-		count += putnb_short_base(flags->num, flags->base, flags->low_hex, flags);
+	count = 2;
+	if ((flags->dot > 0 && flags->num != 0) || flags->dot_p >= 0)
+		if (flags->dot_p != 1)
+			count += putnb_short_base(flags->num, flags->base, flags->low_hex, flags);
 	return (count);
 }
 
@@ -42,18 +43,28 @@ int treat_int(t_list *flags, char *list, int i)
 	num = num_div(flags->num, flags->base);
 	if (list[i] == 'p')
 	{
-		if (flags->dot == 1 && flags->width == flags->precision)
-			flags->precision++;
-		flags->precision -= 2;
+		num += 2;
+		if (flags->dot_p)
+			num--;
+		flags->sym = "0x";
 	}
-	if (get_null(flags) && list[i] != 'p')
+	if (flags->dot == 0 && flags->num == 0 && flags->dot_p == 1 && list[i] != 'p')
+	{
+		flags->minus = 0;
+		put_zero_and_space(flags, 0);
+		return (0);
+	}
+	if (get_null(flags) == 0 && list[i] != 'p')
 		return (0);
 	if (flags->num < 0)
-	{
 		flags->sym = "-";
-		flags->dot++;
-		num++;
+	if (flags->precision < 0)
+	{
+		flags->precision *= -1;
+		flags->minus = 1;
 	}
+	if ((flags->dot > 0 && flags->sym) || flags->num < 0)
+		flags->negative = 1;
 	if (flags->minus == 0)
 		return (dispars_int(flags, num, list, i));
 	else
@@ -62,29 +73,25 @@ int treat_int(t_list *flags, char *list, int i)
 
 int dispars_int(t_list *flags, int num, char *list, int i)
 {
-	if (flags->zero == 1 && flags->precision > 0 && flags->dot <= 1)
-		flags->dot = flags->precision;
-	if (flags->precision == 0 || flags->precision < flags->dot)
-		flags->precision = flags->dot;
-	if (flags->precision > flags->dot && flags->dot != 0)
+	if (flags->dot_p == 0 && flags->zero == 1)
+		flags->minus = 1;
+	if ((flags->zero == 1 && flags->precision > 0 && flags->dot_p == 0) //
+		|| (flags->zero == 1 && flags->precision > 0 && flags->dot < 0))
+	{
+		flags->minus = 1;
+		ft_putstr_fd(flags->sym, 0, 1);
+		flags->sym = 0;
+	}
+	if (flags->precision > flags->dot)
 	{
 		if (flags->dot > num)
 			put_zero_and_space(flags, flags->dot);
 		else
 			put_zero_and_space(flags, num);
 	}
-	else
-		put_zero_and_space(flags, flags->dot + num);
-	if (flags->sym)
-		ft_putstr_fd(flags->sym, 0, 1);
+	ft_putstr_fd(flags->sym, 0, 1);
 	if (flags->dot > 0)
-	{
-		flags->minus = 1;
-		if (flags->dot > num && flags->dot != flags->precision)
-			put_zero_and_space(flags, flags->dot);
-		else
-			put_zero_and_space(flags, num);
-	}
+		put_zero(flags, num);
 	num = int_disp(list, i, flags, num);
 	return (num);
 }
@@ -92,23 +99,18 @@ int dispars_int(t_list *flags, int num, char *list, int i)
 
 int dispars_neg(t_list *flags, int num, char *list, int i)
 {
-	if (flags->num < 0)
-		ft_putchar_fd('-', 1);
-	if (flags->precision == 0 || flags->precision < flags->dot)
-		flags->precision = flags->dot;
-	if (flags->dot > 0)
+	if (flags->sym)
+		ft_putstr_fd(flags->sym, 0, 1);
+	flags->minus = 0;
+	if (flags->dot != 0)
+		put_zero(flags, num);
+	i = int_disp(list, i, flags, num);
+	if (flags->precision > flags->dot)
 	{
-		flags->minus = 1;
 		if (flags->dot > num)
-			put_zero_and_space(flags, flags->precision - (flags->dot - num));
-		else if (flags->dot > num)
+			put_zero_and_space(flags, flags->dot);
+		else
 			put_zero_and_space(flags, num);
 	}
-	i = int_disp(list, i, flags, num);
-	flags->minus = 0;
-	if (flags->dot > 0)
-		put_zero_and_space(flags, num);
-	else
-		put_zero_and_space(flags, num);
 	return (i);
 }

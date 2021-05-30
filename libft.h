@@ -19,6 +19,7 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <string.h>
+# define ALL "cspdiuxX%#-+ .*0123456789"
 
 typedef struct s_list
 {
@@ -30,15 +31,17 @@ typedef struct s_list
 	char *sym;
 	int count;
 	int precision;
-	long long num;
 	int negative;
+	long long num;
+	int dot_e;
+	int dot_p;
 	long long hex;
 	char *up_hex;
 	char *low_hex;
 	int base;
 }	t_list;
 
-
+void	put_zero(t_list *flags, int num);
 int		ft_flags(char c);
 int		ft_conversion(char c);
 int		ft_isalpha(int s);

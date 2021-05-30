@@ -1,0 +1,98 @@
+cmake_minimum_required(VERSION 3.19)
+project(printf)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(.)
+include_directories(pft/src)
+include_directories(pft_2019/src)
+include_directories(printTester/utils)
+include_directories(unit-test/assets)
+include_directories(unit-test/assets/tmp)
+include_directories(unit-test/inc)
+
+add_executable(printf
+    42TESTERS-PRINTF/srcs/main_tester.c
+    pft/configurations/42fc/unit_tests.42fc.c
+    pft/src/help.c
+    pft/src/help.h
+    pft/src/help_conf.c
+    pft/src/history.c
+    pft/src/main.c
+    pft/src/options.c
+    pft/src/print.c
+    pft/src/show_disabled_postprocess.c
+    pft/src/test.c
+    pft/src/test.h
+    pft/src/unit_tests_indexed.c
+    pft/src/utils.c
+    pft/unit_tests.c
+    pft_2019/configurations/42fc/unit_tests.42fc.c
+    pft_2019/src/help.c
+    pft_2019/src/help.h
+    pft_2019/src/help_conf.c
+    pft_2019/src/history.c
+    pft_2019/src/main.c
+    pft_2019/src/options.c
+    pft_2019/src/print.c
+    pft_2019/src/show_disabled_postprocess.c
+    pft_2019/src/test.c
+    pft_2019/src/test.h
+    pft_2019/src/unit_tests_indexed.c
+    pft_2019/src/utils.c
+    pft_2019/unit_tests.c
+    printTester/tests/+_test.cpp
+    printTester/tests/c_test.cpp
+    printTester/tests/d_test.cpp
+    printTester/tests/e_test.cpp
+    printTester/tests/f_test.cpp
+    printTester/tests/g_test.cpp
+    printTester/tests/h_test.cpp
+    printTester/tests/hh_test.cpp
+    printTester/tests/i_test.cpp
+    printTester/tests/l_test.cpp
+    printTester/tests/ll_test.cpp
+    printTester/tests/mix_test.cpp
+    printTester/tests/n_test.cpp
+    printTester/tests/p_test.cpp
+    printTester/tests/percent_test.cpp
+    printTester/tests/s_test.cpp
+    printTester/tests/sharp_test.cpp
+    printTester/tests/space_test.cpp
+    printTester/tests/u_test.cpp
+    printTester/tests/upperx_test.cpp
+    printTester/tests/x_test.cpp
+    printTester/utils/check.cpp
+    printTester/utils/check.hpp
+    printTester/utils/color.cpp
+    printTester/utils/color.hpp
+    printTester/utils/leaks.cpp
+    printTester/utils/leaks.hpp
+    printTester/utils/print.hpp
+    printTester/utils/sigsegv.cpp
+    printTester/utils/sigsegv.hpp
+    unit-test/assets/tmp/libft.h
+    unit-test/inc/printf_unit_test.h
+    unit-test/inc/source-generator.h
+    unit-test/src/main.cpp
+    unit-test/src/random_args.cpp
+    unit-test/src/source_generator.cpp
+    unit-test/libprintf-test.c
+    dispars_char.c
+    dispars_string.c
+    ft_atoi.c
+    ft_flag_dot.c
+    ft_flag_pars.c
+    ft_flags_c.c
+    ft_hex_dispars.c
+    ft_isdigit.c
+    ft_printf.c
+    ft_putchar_fd.c
+    ft_putnbr_fd.c
+    ft_putstr_fd.c
+        ft_strdup.c
+    ft_strlen.c
+    ft_toupper.c
+    ft_type_pars.c
+    libft.h
+    treat_width.c)

@@ -2,7 +2,7 @@
 
 void	put_zero_and_space(t_list *flags, int num)
 {
-	while (flags->precision - num > 0)
+	while (flags->precision - num - flags->negative > 0)
 	{
 		if (flags->minus > 0)
 			flags->count += ft_putchar_fd('0', 1);
@@ -11,6 +11,19 @@ void	put_zero_and_space(t_list *flags, int num)
 		flags->precision--;
 	}
 }
+
+void	put_zero(t_list *flags, int num)
+{
+	int i;
+
+	i = flags->dot;
+	while (i - num > 0)
+	{
+		flags->count += ft_putchar_fd('0', 1);
+		i--;
+	}
+}
+
 int putnb_hed(char *list, int i, t_list *flags, int num)
 {
 	if (list[i] == 'p')
@@ -53,15 +66,20 @@ int	num_div(long long j, int base)
 
 int int_disp(char *list, int i, t_list *flags, int num)
 {
+	int j;
+
+	j = 0;
 	if (flags->base == 16)
 		return (putnb_hed(list, i, flags, num));
 	else if (flags->base == 10)
 	{
-		if (flags->num == 4294967295)
+		if (list[i] == 'u')
+			putnb_short_base(flags->num, flags->base, "0123456789", flags);
+		else if (flags->num == 4294967295)
 			flags->count = ft_putstr_fd("4294967295",0,  1);
 		else
-			ft_putnbr_fd(flags->num, 1);
-		return (num);
+			j = ft_putnbr_fd(flags->num, 1);
+		return (num + j);
 	}
 	return (0);
 }
