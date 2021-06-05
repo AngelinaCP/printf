@@ -1,61 +1,51 @@
 #include "libft.h"
 
-int dispars_num(t_list *flags, va_list argc, char *list, int i)
+int	dispars_num(t_list *flags, va_list argc, char *format, int i)
 {
-    if (list[i] == 'd' || list[i] == 'i')
-    {
+	if (format[i] == 'd' || format[i] == 'i')
+	{
 		flags->num = va_arg(argc, int);
 		flags->base = 10;
 	}
-    else if (list[i] == 'x' || list[i] == 'X')
-    {
-        flags->num = va_arg(argc, unsigned int);
-        flags->base = 16;
-    }
-    else if (list[i] == 'p')
+	else if (format[i] == 'x' || format[i] == 'X')
+	{
+		flags->num = va_arg(argc, unsigned int);
+		flags->base = 16;
+	}
+	else if (format[i] == 'p')
 	{
 		flags->num = va_arg(argc, long long);
 		flags->base = 16;
 	}
-	else if (list[i] == 'u')
+	else if (format[i] == 'u')
 	{
 		flags->num = va_arg(argc, unsigned int);
 		flags->base = 10;
 	}
-    return (treat_int(flags, list, i));
+	return (treat_int(flags, format, i));
 }
 
-int treat_pointer(t_list *flags, int num, char *list, int i)
+int	treat_pointer(t_list *flags)
 {
-	int count;
+	int	count;
 
 	count = 2;
 	if ((flags->dot > 0 && flags->num != 0) || flags->dot_p >= 0)
 		if (flags->dot_p != 1)
-			count += putnb_short_base(flags->num, flags->base, flags->low_hex, flags);
+			count += putnb_short_base(flags->num,
+					flags->base, flags->low_hex, flags);
 	return (count);
 }
 
-int treat_int(t_list *flags, char *list, int i)
+int	int_condition(t_list *flags, int num, char *format, int i)
 {
-	int num;
-
-	num = num_div(flags->num, flags->base);
-	if (list[i] == 'p')
+	if (format[i] == 'p')
 	{
 		num += 2;
 		if (flags->dot_p)
 			num--;
 		flags->sym = "0x";
 	}
-	if (flags->dot == 0 && flags->num == 0 && flags->dot_p == 1 && list[i] != 'p')
-	{
-		flags->minus = 0;
-		put_zero_and_space(flags, 0);
-		return (0);
-	}
-	if (get_null(flags) == 0 && list[i] != 'p')
-		return (0);
 	if (flags->num < 0)
 		flags->sym = "-";
 	if (flags->precision < 0)
@@ -63,54 +53,5 @@ int treat_int(t_list *flags, char *list, int i)
 		flags->precision *= -1;
 		flags->minus = 1;
 	}
-	if ((flags->dot > 0 && flags->sym) || flags->num < 0)
-		flags->negative = 1;
-	if (flags->minus == 0)
-		return (dispars_int(flags, num, list, i));
-	else
-		return (dispars_neg(flags, num, list, i));
-}
-
-int dispars_int(t_list *flags, int num, char *list, int i)
-{
-	if (flags->dot_p == 0 && flags->zero == 1)
-		flags->minus = 1;
-	if ((flags->zero == 1 && flags->precision > 0 && flags->dot_p == 0) //
-		|| (flags->zero == 1 && flags->precision > 0 && flags->dot < 0))
-	{
-		flags->minus = 1;
-		ft_putstr_fd(flags->sym, 0, 1);
-		flags->sym = 0;
-	}
-	if (flags->precision > flags->dot)
-	{
-		if (flags->dot > num)
-			put_zero_and_space(flags, flags->dot);
-		else
-			put_zero_and_space(flags, num);
-	}
-	ft_putstr_fd(flags->sym, 0, 1);
-	if (flags->dot > 0)
-		put_zero(flags, num);
-	num = int_disp(list, i, flags, num);
 	return (num);
-}
-
-
-int dispars_neg(t_list *flags, int num, char *list, int i)
-{
-	if (flags->sym)
-		ft_putstr_fd(flags->sym, 0, 1);
-	flags->minus = 0;
-	if (flags->dot != 0)
-		put_zero(flags, num);
-	i = int_disp(list, i, flags, num);
-	if (flags->precision > flags->dot)
-	{
-		if (flags->dot > num)
-			put_zero_and_space(flags, flags->dot);
-		else
-			put_zero_and_space(flags, num);
-	}
-	return (i);
 }

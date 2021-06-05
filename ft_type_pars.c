@@ -1,51 +1,50 @@
 #include "libft.h"
 
-int	ft_type_pars(char *list, int i, t_list *flags, va_list argc)
+int	ft_type_pars(char *format, int i, t_list *flags, va_list argc)
 {
-  	while (ft_isdigit(list[i]) || ft_conversion(list[i]) || ft_flags(list[i]))
+	while (ft_isdigit(format[i]) || ft_conversion(format[i])
+		|| ft_flags(format[i]))
 	{
-	    if (list[i] == '%')
-        {
-            print_percent(flags);
-	        i++;
-	        if (list[i] == '%')
-	        	i++;
-	        break;
-        }
-		else if (list[i] == '*')
+		if (format[i] == '%')
 		{
-			ft_flag_star(list, i, flags, argc);
+			print_percent(flags);
 			i++;
+			break ;
 		}
-		else if (list[i] == '.')
+		i = format_pars_flags(format, i, flags, argc);
+		if (ft_isdigit(format[i]))
+			i = format_pars_digit(format, i, flags, argc);
+		else if (ft_flags(format[i]))
 		{
-			ft_flag_dot(list, i, flags, argc);
+			flags->count += ft_is_flag(format, i, flags, argc);
 			i++;
+			break ;
 		}
-		else if (list[i] == '0')
-		{
-			ft_flag_zero(list, i, flags, argc);
-			i++;
-		}
-		else if (list[i] == '-')
-		{
-			ft_flag_minus(flags);
-			i++;
-		}
-        else if (ft_isdigit(list[i]))
-        {
-            ft_digit_pars(list, i, flags, argc);
-            while (ft_isdigit(list[i]))
-                i++;
-        }
-        else if (ft_flags(list[i]))
-        {
-        	flags->count += ft_is_flag(list, i, flags, argc);
-            i++;
-            break;
-        }
 		else
 			return (-1);
+	}
+	return (i);
+}
+
+int	format_pars_digit(char *format, int i, t_list *flags, va_list argc)
+{
+	ft_digit_pars(format, i, flags, argc);
+	while (ft_isdigit(format[i]))
+		i++;
+	return (i);
+}
+
+int	format_pars_flags(char *format, int i, t_list *flags, va_list argc)
+{
+	while (ft_conversion(format[i]))
+	{
+		if (format[i] == '*')
+		{
+			ft_flag_star(flags, argc);
+			i++;
+		}
+		else if (format[i] == '.' || format[i] == '0' || format[i] == '-' )
+			i += ft_flags_count(flags, format, i);
 	}
 	return (i);
 }

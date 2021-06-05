@@ -1,6 +1,6 @@
 #include "libft.h"
 
-void	dispars_char(t_list *flags, va_list argc, char *list, int i)
+void	dispars_char(t_list *flags, va_list argc, char *format, int i)
 {
 	int	ar;
 
@@ -17,7 +17,7 @@ void	dispars_char(t_list *flags, va_list argc, char *list, int i)
 			char_minus(flags, argc, ar);
 		return ;
 	}
-		flags->count += ft_putchar_fd(ar, 1);
+	flags->count += ft_putchar_fd(ar, 1);
 }
 
 void	char_minus(t_list *flags, va_list argc, int ar)
@@ -27,7 +27,7 @@ void	char_minus(t_list *flags, va_list argc, int ar)
 	put_zero_and_space(flags, 1);
 }
 
-void    print_percent(t_list *flags)
+void	print_percent(t_list *flags)
 {
 	if (flags->precision > 0)
 	{

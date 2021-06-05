@@ -6,7 +6,7 @@
 /*   By: ddelena <ddelena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 03:45:16 by ddelena           #+#    #+#             */
-/*   Updated: 2021/04/30 23:15:55 by ddelena          ###   ########.fr       */
+/*   Updated: 2021/06/01 05:30:28 by ddelena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 int	ft_putnbr_fd(int n, int fd)
 {
-	int i;
+	int	i;
 
 	i = 0;
-   if (n == -2147483648)
-   {
-	   ft_putstr_fd("2147483648", 0, fd);
-	   i++;
-   }
-
+	if (n == -2147483648)
+	{
+		ft_putstr_ch("2147483648", 0, fd);
+		i++;
+	}
 	else if (n < 0)
 	{
 		ft_putnbr_fd(n * (-1), fd);

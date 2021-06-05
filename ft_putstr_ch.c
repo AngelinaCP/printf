@@ -1,25 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_ch.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddelena <ddelena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/16 15:14:29 by ddelena           #+#    #+#             */
-/*   Updated: 2021/04/21 18:30:56 by ddelena          ###   ########.fr       */
+/*   Created: 2021/04/23 03:48:49 by ddelena           #+#    #+#             */
+/*   Updated: 2021/06/01 16:39:54 by ddelena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_putstr_ch(char *s, int j, int fd)
 {
-	int	i;
+	int	count;
 
-	i = 0;
-	while (str[i])
+	count = 0;
+	if (s)
 	{
-		i++;
+		if (j > 0)
+		{
+			while (*s && count < j)
+			{
+				write(fd, s, 1);
+				count++;
+				s++;
+			}
+		}
+		else
+		{
+			while (*s)
+			{
+				write(fd, s, 1);
+				count++;
+				s++;
+			}
+		}
 	}
-	return (i);
+	return (count);
 }
