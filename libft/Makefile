@@ -6,7 +6,7 @@
 #    By: ddelena <ddelena@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/19 17:46:16 by ddelena           #+#    #+#              #
-#    Updated: 2021/05/12 11:46:49 by ddelena          ###   ########.fr        #
+#    Updated: 2021/06/07 15:43:01 by ddelena          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ SRCS	=	ft_atoi.c		ft_isalnum.c	ft_isalpha.c	ft_isascii.c	\
 			ft_strlcat.c	ft_strlcpy.c	ft_strlen.c		ft_strncmp.c	\
 			ft_strnstr.c	ft_strrchr.c	ft_tolower.c	ft_toupper.c	\
 			ft_bzero.c		ft_memmove.c	ft_calloc.c		ft_strdup.c		\
-			ft_putchar_fd.c	ft_putstr_fd.c	ft_putendl_fd.c	ft_substr.c		\
-			ft_strmapi.c	ft_strjoin.c	ft_itoa.c		ft_putnbr_fd.c	\
-			ft_split.c		ft_strtrim.c									\
+			ft_putstr_fd.c	ft_putendl_fd.c	ft_substr.c		\
+			ft_strmapi.c	ft_strjoin.c	ft_itoa.c		\
+			ft_strtrim.c									\
 			
 SRCS_bonus	=	ft_lstnew.c			ft_lstmap.c		ft_lstiter.c			\
 			ft_lstadd_front.c	ft_lstsize.c	ft_lstlast.c				\
