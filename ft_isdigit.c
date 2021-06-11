@@ -6,11 +6,11 @@
 /*   By: ddelena <ddelena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 13:03:53 by ddelena           #+#    #+#             */
-/*   Updated: 2021/04/21 11:17:31 by ddelena          ###   ########.fr       */
+/*   Updated: 2021/06/11 16:42:30 by ddelena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
 int	ft_isdigit(int s)
 {

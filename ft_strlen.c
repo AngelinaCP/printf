@@ -6,11 +6,11 @@
 /*   By: ddelena <ddelena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 15:14:29 by ddelena           #+#    #+#             */
-/*   Updated: 2021/04/21 18:30:56 by ddelena          ###   ########.fr       */
+/*   Updated: 2021/06/11 16:47:05 by ddelena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
 size_t	ft_strlen(const char *str)
 {

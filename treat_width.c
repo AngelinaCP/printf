@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "libftprintf.h"
 
 int	dispars_num(t_list *flags, va_list argc, char *format, int i)
 {
@@ -32,7 +32,7 @@ int	treat_pointer(t_list *flags)
 	count = 2;
 	if ((flags->dot > 0 && flags->num != 0) || flags->dot_p >= 0)
 		if (flags->dot_p != 1)
-			count += putnb_short_base(flags->num,
+			count += ft_putnb_short_base(flags->num,
 					flags->base, flags->low_hex, flags);
 	return (count);
 }

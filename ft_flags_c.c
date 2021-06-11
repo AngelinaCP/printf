@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "libftprintf.h"
 
 void	ft_flags_s(t_list *flags)
 {

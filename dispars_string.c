@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "libftprintf.h"
 
 void	put_zero_and_space(t_list *flags, int num)
 {

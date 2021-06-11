@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "libftprintf.h"
 
 void	put_zero(t_list *flags, int num)
 {
@@ -17,18 +17,18 @@ int	putnb_hed(char *format, int i, t_list *flags, int num)
 	if (format[i] == 'p')
 		return (treat_pointer(flags));
 	else if (format[i] == 'x')
-		return (putnb_short_base(flags->num, flags->base,
+		return (ft_putnb_short_base(flags->num, flags->base,
 				flags->low_hex, flags));
 	else
-		return (putnb_short_base(flags->num, flags->base,
+		return (ft_putnb_short_base(flags->num, flags->base,
 				flags->up_hex, flags));
 }
 
-int	putnb_short_base(long long n, size_t base_len, char *base, t_list *flags)
+int	ft_putnb_short_base(long long n, size_t base_len, char *base, t_list *flags)
 {
 	if (n < base_len)
 		return (ft_putchar_fd(base[n], 1));
-	return (putnb_short_base(n / base_len, base_len, base, flags)
+	return (ft_putnb_short_base(n / base_len, base_len, base, flags)
 		+ ft_putchar_fd(base[n % base_len], 1));
 }
 
@@ -64,7 +64,7 @@ int	int_disp(char *format, int i, t_list *flags, int num)
 	else if (flags->base == 10)
 	{
 		if (format[i] == 'u')
-			putnb_short_base(flags->num, flags->base, "0123456789", flags);
+			ft_putnb_short_base(flags->num, flags->base, "0123456789", flags);
 		else if (flags->num == 4294967295)
 			flags->count = ft_putstr_ch("4294967295", 0, 1);
 		else

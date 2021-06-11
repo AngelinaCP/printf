@@ -6,11 +6,11 @@
 /*   By: ddelena <ddelena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 03:45:16 by ddelena           #+#    #+#             */
-/*   Updated: 2021/06/01 05:30:28 by ddelena          ###   ########.fr       */
+/*   Updated: 2021/06/11 16:42:39 by ddelena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
 int	ft_putnbr_fd(int n, int fd)
 {

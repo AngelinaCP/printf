@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "libftprintf.h"
 
 int	ft_flags_count(t_list *flags, char *format, int i)
 {

@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddelena <ddelena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:47:33 by ddelena           #+#    #+#             */
-/*   Updated: 2021/06/05 04:14:18 by ddelena          ###   ########.fr       */
+/*   Updated: 2021/06/11 16:53:27 by ddelena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef LIBFTPRINTF_H
+# define LIBFTPRINTF_H
 
 # include <stddef.h>
-# include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <string.h>
 
 typedef struct s_list
 {
@@ -67,7 +65,7 @@ void	put_zero_and_space(t_list *flags, int num);
 int		dispars_string(t_list *flags, va_list argc, char *format, int i);
 int		check_space(int i, char *format, va_list argc, t_list *flags);
 void	print_percent(t_list *flags);
-int		putnb_short_base(long long n, size_t base_len, char *base,
+int		ft_putnb_short_base(long long n, size_t base_len, char *base,
 			t_list *flags);
 int		num_div(long long j, int base);
 int		putnb_hed(char *format, int i, t_list *flags, int num);

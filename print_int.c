@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "libftprintf.h"
 
 int	treat_int(t_list *flags, char *format, int i)
 {
