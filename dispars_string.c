@@ -26,7 +26,7 @@ int	get_null(t_list *flags)
 	return (-1);
 }
 
-int	dispars_string(t_list *flags, va_list argc, char *format, int i)
+int	dispars_string(t_list *flags, va_list argc)
 {
 	int		len;
 	char	*ar;
@@ -57,7 +57,7 @@ int	string_neg(t_list *flags, char *ar, int len)
 			flags->minus = 1;
 		if (flags->precision > 0)
 		{
-			if (flags->dot_p && flags->dot < ft_strlen(ar))
+			if (flags->dot_p && flags->dot < (int)ft_strlen(ar))
 				put_zero_and_space(flags, flags->dot);
 			else
 				put_zero_and_space(flags, ft_strlen(ar));
@@ -75,10 +75,10 @@ int	dispars_neg_string(t_list *flags, char *ar, int len)
 	if (flags->precision > 0)
 	{
 		flags->minus = 0;
-		if (flags->dot_p && flags->dot < ft_strlen(ar))
+		if (flags->dot_p && flags->dot < (int)ft_strlen(ar))
 			put_zero_and_space(flags, flags->dot);
 		else
-			put_zero_and_space(flags, ft_strlen(ar));
+			put_zero_and_space(flags, (int)ft_strlen(ar));
 	}
 	return (len);
 }

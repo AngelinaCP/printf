@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-void	dispars_char(t_list *flags, va_list argc, char *format, int i)
+void	dispars_char(t_list *flags, va_list argc)
 {
 	int	ar;
 
@@ -14,13 +14,13 @@ void	dispars_char(t_list *flags, va_list argc, char *format, int i)
 			flags->count += ft_putchar_fd(ar, 1);
 		}
 		else if (flags->minus == 1)
-			char_minus(flags, argc, ar);
+			char_minus(flags, ar);
 		return ;
 	}
 	flags->count += ft_putchar_fd(ar, 1);
 }
 
-void	char_minus(t_list *flags, va_list argc, int ar)
+void	char_minus(t_list *flags, int ar)
 {
 	flags->minus = 0;
 	flags->count += ft_putchar_fd(ar, 1);

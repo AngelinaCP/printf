@@ -54,7 +54,7 @@ int	ft_is_flag(char *format, int i, t_list *flags, va_list argc)
 	return (count);
 }
 
-int	ft_digit_pars(char *format, int i, t_list *flags, va_list argc)
+int	ft_digit_pars(char *format, int i, t_list *flags)
 {
 	while (ft_isdigit(format[i]))
 	{

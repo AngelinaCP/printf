@@ -12,7 +12,7 @@ void	put_zero(t_list *flags, int num)
 	}
 }
 
-int	putnb_hed(char *format, int i, t_list *flags, int num)
+int	putnb_hed(char *format, int i, t_list *flags)
 {
 	if (format[i] == 'p')
 		return (treat_pointer(flags));
@@ -26,7 +26,7 @@ int	putnb_hed(char *format, int i, t_list *flags, int num)
 
 int	ft_putnb_short_base(long long n, size_t base_len, char *base, t_list *flags)
 {
-	if (n < base_len)
+	if (n < (long long)base_len)
 		return (ft_putchar_fd(base[n], 1));
 	return (ft_putnb_short_base(n / base_len, base_len, base, flags)
 		+ ft_putchar_fd(base[n % base_len], 1));
@@ -60,7 +60,7 @@ int	int_disp(char *format, int i, t_list *flags, int num)
 
 	j = 0;
 	if (flags->base == 16)
-		return (putnb_hed(format, i, flags, num));
+		return (putnb_hed(format, i, flags));
 	else if (flags->base == 10)
 	{
 		if (format[i] == 'u')

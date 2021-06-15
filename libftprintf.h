@@ -6,7 +6,7 @@
 /*   By: ddelena <ddelena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:47:33 by ddelena           #+#    #+#             */
-/*   Updated: 2021/06/11 16:53:27 by ddelena          ###   ########.fr       */
+/*   Updated: 2021/06/15 15:08:21 by ddelena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,22 @@ int		ft_flag_pars(char *format, int i, t_list *flags, va_list argc);
 size_t	ft_strlen(const char *str);
 int		ft_type_pars(char *format, int i, t_list *flags, va_list argc);
 int		ft_is_flag(char *format, int i, t_list *flags, va_list argc);
-int		ft_digit_pars(char *format, int i, t_list *flags, va_list argc);
+int		ft_digit_pars(char *format, int i, t_list *flags);
 void	ft_flags_s(t_list *flags);
 int		ft_flags(char c);
 int		ft_conversion (char c);
 void	treat_width(t_list *flags, int num);
-void	dispars_char(t_list *flags, va_list argc, char *format, int i);
+void	dispars_char(t_list *flags, va_list argc);
 int		ft_check_flags(va_list argc, char *format, t_list *flags);
-void	char_minus(t_list *flags, va_list argc, int ar);
+void	char_minus(t_list *flags, int ar);
 void	put_zero_and_space(t_list *flags, int num);
-int		dispars_string(t_list *flags, va_list argc, char *format, int i);
+int		dispars_string(t_list *flags, va_list argc);
 int		check_space(int i, char *format, va_list argc, t_list *flags);
 void	print_percent(t_list *flags);
 int		ft_putnb_short_base(long long n, size_t base_len, char *base,
 			t_list *flags);
 int		num_div(long long j, int base);
-int		putnb_hed(char *format, int i, t_list *flags, int num);
+int		putnb_hed(char *format, int i, t_list *flags);
 int		int_disp(char *format, int i, t_list *flags, int num);
 int		treat_int(t_list *flags, char *format, int i);
 int		dispars_int(t_list *flags, int num, char *format, int i);
@@ -81,6 +81,6 @@ int		string_neg(t_list *flags, char *ar, int len);
 int		int_condition(t_list *flags, int num, char *format, int i);
 int		treat_int(t_list *flags, char *format, int i);
 int		dispars_num(t_list *flags, va_list argc, char *format, int i);
-int		format_pars_digit(char *format, int i, t_list *flags, va_list argc);
+int		format_pars_digit(char *format, int i, t_list *flags);
 
 #endif
