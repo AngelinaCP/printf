@@ -10,10 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
 NAME	= libftprintf.a
-HEAD	= libftprintf.h
+HEADER	= libftprintf.h
 SRCS	=	ft_putstr_ch.c	ft_putchar_fd.c \
 			ft_putnbr_fd.c	\
 			ft_flags_count.c	ft_printf.c		ft_type_pars.c \
@@ -21,24 +19,25 @@ SRCS	=	ft_putstr_ch.c	ft_putchar_fd.c \
 			dispars_char.c	dispars_string.c ft_dispars.c \
 			print_int.c 	ft_isdigit.c ft_strlen.c
 
-OBJS    = ${SRCS:.c=.o}
+OBJS			= $(SRCS:.c=.o)
 
-%.o : %.c   ${HEAD}
-			${CC} ${FLAGS} -c $< -o $@
+CC				= gcc
+RM				= rm -f
+CFLAGS			= -Wall -Wextra -Werror -I.
 
-$(NAME): ${OBJS} ${HEAD}
-		ar rcs ${NAME} $?
+all:			$(NAME)
 
-all: ${NAME}
+bonus: all
+
+$(NAME):		$(OBJS)
+				ar rcs $(NAME) $(OBJS) $(HEADER)
 
 clean:
-		rm -f ${OBJS}
+				$(RM) $(OBJS) $(BONUS_OBJS)
 
-fclean:	clean
-		rm -f ${NAME} 
-re:		fclean all
+fclean:			clean
+				$(RM) $(NAME)
 
-main:
-	gcc -o a.out *.o
+re:				fclean all
 
-.PHONY:	all, clean, fclean, re bonus
+.PHONY: clean fclean all re
