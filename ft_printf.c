@@ -59,3 +59,9 @@ int	ft_printf(const char *format, ...)
 	va_end(argc);
 	return (i);
 }
+#include <stdio.h>
+
+int main(void)
+{
+	ft_printf("%D\n %d\n",  54);
+}
